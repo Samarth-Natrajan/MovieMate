@@ -1,12 +1,11 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import pickle  # or your model loading mechanism
+import pickle  
 
 app = Flask(__name__)
 CORS(app)
 
-# Load your pre-trained recommendation model
-# For example, if you have a trained model saved as a pickle file
+# Loading pre-trained recommendation model
 with open('similarity.pkl', 'rb') as f:
     similarity = pickle.load(f)
 with open('movie_list.pkl','rb') as file:
@@ -36,8 +35,7 @@ def recommend():
         return jsonify({'recommendations': recommendations})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    # return {'name':"samarth"}
-    #return jsonify({'name':"samarth"})
+   
 
 if __name__ == '__main__':
     app.run(debug=True,port=8080)
