@@ -22,7 +22,7 @@ def recommendmovie(movie):
         ans.append(new.iloc[i[0]].title)
     print(ans)
     return ans
-recommendations = recommendmovie('Kung Fu Panda 2')
+recommendations = recommendmovie('Shutter Island')
 print(recommendations)
 @app.route('/recommend', methods=['GET'])
 def recommend():
