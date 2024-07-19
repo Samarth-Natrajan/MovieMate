@@ -27,7 +27,8 @@ def recommendmovie(movie):
 input_data = st.text_input('Enter the Movie Name:')
 if input_data:
     result = recommendmovie(input_data)  # Adjust based on your model's predict method
-    st.write(f'Result: {result}')
+    for i in result:
+        st.write(i)
 # recommendations = recommendmovie('Shutter Island')
 # print(recommendations)
 # @app.route('/recommend', methods=['GET'])
