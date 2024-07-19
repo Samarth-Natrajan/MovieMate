@@ -24,7 +24,7 @@ def recommendmovie(movie):
     print(ans)
     return ans
 
-input_data = st.text_input('Enter the Movie Name:')
+input_data = st.selectbox('Enter the Movie Name:',new['title'].values)
 if input_data:
     result = recommendmovie(input_data)  # Adjust based on your model's predict method
     for i in result:
