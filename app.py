@@ -26,9 +26,11 @@ def recommendmovie(movie):
 
 input_data = st.selectbox('Enter the Movie Name:',new['title'].values)
 if input_data:
-    result = recommendmovie(input_data)  # Adjust based on your model's predict method
-    for i in result:
-        st.write(i)
+    if st.button("Recommend"):
+
+        result = recommendmovie(input_data)  # Adjust based on your model's predict method
+        for i in result:
+            st.write(i)
 # recommendations = recommendmovie('Shutter Island')
 # print(recommendations)
 # @app.route('/recommend', methods=['GET'])
