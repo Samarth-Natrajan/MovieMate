@@ -19,7 +19,7 @@ def recommendmovie(movie):
     print(index)
     distances = sorted(list(enumerate(similarity[index])),reverse=True,key = lambda x: x[1])
     ans = []
-    for i in distances[1:16]:
+    for i in distances[1:6]:
         ans.append(new.iloc[i[0]].title)
     print(ans)
     return ans
