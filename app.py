@@ -1,10 +1,11 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+# from flask import Flask, request, jsonify
+# from flask_cors import CORS
 import pickle  
+import streamlit as st
 
-app = Flask(__name__)
-CORS(app)
-
+# app = Flask(__name__)
+# CORS(app)
+st.title("MovieMate")
 # Loading pre-trained recommendation model
 with open('similarity.pkl', 'rb') as f:
     similarity = pickle.load(f)
@@ -22,20 +23,25 @@ def recommendmovie(movie):
         ans.append(new.iloc[i[0]].title)
     print(ans)
     return ans
-recommendations = recommendmovie('Shutter Island')
-print(recommendations)
-@app.route('/recommend', methods=['GET'])
-def recommend():
-    movie_name = request.args.get('movie')
-    if not movie_name:
-        return jsonify({'error': 'Please provide a movie name'}), 400
 
-    try:
-        recommendations = recommendmovie(movie_name)
-        return jsonify({'recommendations': recommendations})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+input_data = st.text_input('Enter the Movie Name:')
+if input_data:
+    result = recommendmovie(input_data)  # Adjust based on your model's predict method
+    st.write(f'Result: {result}')
+# recommendations = recommendmovie('Shutter Island')
+# print(recommendations)
+# @app.route('/recommend', methods=['GET'])
+# def recommend():
+#     movie_name = request.args.get('movie')
+#     if not movie_name:
+#         return jsonify({'error': 'Please provide a movie name'}), 400
+
+#     try:
+#         recommendations = recommendmovie(movie_name)
+#         return jsonify({'recommendations': recommendations})
+#     except Exception as e:
+#         return jsonify({'error': str(e)}), 500
    
 
-if __name__ == '__main__':
-    app.run(debug=True,port=8080)
+# if __name__ == '__main__':
+#     app.run(debug=True,port=8080)
